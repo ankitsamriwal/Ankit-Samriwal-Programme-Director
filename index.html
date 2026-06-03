@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ankit Samriwal — Programme Director, D365 CE & AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET & TOKENS ──────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:       #080C12;
+  --bg-2:     #0C1118;
+  --bg-3:     #111820;
+  --surface:  #182231;
+  --surface-2:#1E2A3E;
+  --border:   #253347;
+  --border-2: #2D3E54;
+  --cyan:     #00E5FF;
+  --cyan-dim: rgba(0,229,255,.12);
+  --cyan-glow:rgba(0,229,255,.06);
+  --white:    #F0F4F8;
+  --white-60: rgba(240,244,248,.82);
+  --white-35: rgba(240,244,248,.62);
+  --white-15: rgba(240,244,248,.28);
+  --white-06: rgba(240,244,248,.10);
+  --mono:     'IBM Plex Mono',monospace;
+  --display:  'Fraunces',serif;
+  --body:     'IBM Plex Sans',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:var(--body);
+  font-weight:300;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+
+/* ── NAV ─────────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:56px;
+  background:rgba(8,12,18,.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-id{
+  font-family:var(--mono);font-size:.72rem;font-weight:400;
+  color:var(--white-60);letter-spacing:.08em;
+}
+.nav-id strong{color:var(--cyan);font-weight:500;}
+.nav-menu{display:flex;align-items:center;gap:40px;}
+.nav-menu a{
+  font-family:var(--mono);font-size:.65rem;font-weight:400;
+  color:var(--white-35);letter-spacing:.1em;text-transform:uppercase;
+  transition:color .15s;
+}
+.nav-menu a:hover{color:var(--white);}
+.nav-connect{
+  font-family:var(--mono);font-size:.65rem;font-weight:500;
+  color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid rgba(0,229,255,.3);
+  padding:.35rem 1rem;
+  transition:all .2s;
+}
+.nav-connect:hover{background:var(--cyan-dim);border-color:var(--cyan);}
+.nav-burger{display:none;flex-direction:column;gap:4px;cursor:pointer;}
+.nav-burger span{width:20px;height:1px;background:var(--white-60);transition:all .25s;}
+@media(max-width:900px){
+  nav{padding:0 24px;}
+  .nav-menu{display:none;}
+  .nav-burger{display:flex;}
+  nav.open .nav-menu{
+    display:flex;flex-direction:column;gap:0;align-items:flex-start;
+    position:fixed;top:56px;left:0;right:0;
+    background:rgba(8,12,18,.98);
+    border-bottom:1px solid var(--border);
+    padding:24px;
+  }
+  nav.open .nav-menu a{
+    padding:14px 0;width:100%;
+    border-bottom:1px solid var(--border);font-size:.75rem;
+  }
+}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:0;
+  position:relative;
+  overflow:hidden;
+}
+/* scanning line animation */
+.hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+  animation:scan 6s ease-in-out infinite;opacity:.4;
+}
+@keyframes scan{0%{top:0;opacity:.4;}50%{opacity:.8;}100%{top:100%;opacity:0;}}
+
+/* dot grid texture */
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(0,229,255,.08) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse 80% 70% at 30% 50%,black,transparent);
+}
+
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px 64px 80px 64px;
+  position:relative;z-index:2;
+  border-right:1px solid var(--border);
+}
+.hero-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:400;
+  color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:32px;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-tag::before{content:'';width:32px;height:1px;background:var(--cyan);}
+
+h1{
+  font-family:var(--display);
+  font-size:clamp(3rem,5.5vw,5rem);
+  font-weight:900;
+  line-height:1.0;
+  letter-spacing:-.03em;
+  color:var(--white);
+  margin-bottom:8px;
+}
+h1 em{
+  font-style:italic;font-weight:300;
+  color:var(--white-60);display:block;
+  font-size:.55em;letter-spacing:.01em;line-height:1.6;margin-top:4px;
+}
+.hero-rule{
+  width:48px;height:2px;
+  background:var(--cyan);
+  margin:32px 0;
+}
+.hero-desc{
+  font-size:.95rem;font-weight:300;
+  color:var(--white-60);line-height:1.8;
+  max-width:480px;margin-bottom:48px;
+}
+.hero-desc strong{color:var(--white);font-weight:400;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-cta{
+  font-family:var(--mono);font-size:.7rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.7rem 1.8rem;
+  background:var(--cyan);color:var(--bg);
+  transition:all .2s;
+}
+.btn-cta:hover{background:#fff;box-shadow:0 0 30px rgba(0,229,255,.4);}
+.btn-ghost{
+  font-family:var(--mono);font-size:.7rem;font-weight:400;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.7rem 1.8rem;
+  border:1px solid var(--border-2);color:var(--white-60);
+  transition:all .2s;
+}
+.btn-ghost:hover{border-color:var(--white-35);color:var(--white);}
+
+/* hero right — stat panel */
+.hero-right{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px 40px 80px 48px;
+  position:relative;z-index:2;
+  gap:2px;
+}
+.hero-right-label{
+  font-family:var(--mono);font-size:.6rem;font-weight:400;
+  color:var(--white-35);letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.stat-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;margin-bottom:2px;
+}
+.stat-cell{
+  background:var(--surface);
+  padding:24px 20px;
+  transition:background .2s;
+}
+.stat-cell:hover{background:var(--surface-2);}
+.stat-cell.accent{background:var(--cyan-dim);border:1px solid rgba(0,229,255,.2);}
+.stat-n{
+  font-family:var(--display);font-size:2.2rem;font-weight:700;
+  color:var(--white);line-height:1;margin-bottom:6px;
+}
+.stat-cell.accent .stat-n{color:var(--cyan);}
+.stat-l{font-family:var(--mono);font-size:.62rem;color:var(--white-35);letter-spacing:.06em;line-height:1.5;}
+.certs-block{
+  background:var(--surface);padding:20px;margin-top:2px;
+}
+.certs-label{font-family:var(--mono);font-size:.58rem;color:var(--white-35);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+.certs-list{display:flex;flex-wrap:wrap;gap:6px;}
+.cert-pill{
+  font-family:var(--mono);font-size:.6rem;font-weight:500;
+  padding:.2rem .55rem;background:var(--bg-3);
+  border:1px solid var(--border-2);color:var(--white-60);
+  letter-spacing:.04em;
+}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{padding:100px 24px 48px;border-right:none;border-bottom:1px solid var(--border);}
+  .hero-right{padding:40px 24px 60px;}
+}
+
+/* ── SHARED SECTION STYLES ────────────────────────────────────── */
+.sec{padding:100px 64px;}
+.sec-inner{max-width:1200px;margin:0 auto;}
+.sec-header{margin-bottom:64px;}
+.sec-eyebrow{
+  font-family:var(--mono);font-size:.62rem;font-weight:400;
+  color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;margin-bottom:20px;
+}
+.sec-eyebrow::before{content:'';width:24px;height:1px;background:var(--cyan);}
+.sec-count{color:var(--white-35);font-size:.58rem;}
+h2{
+  font-family:var(--display);font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:700;letter-spacing:-.025em;line-height:1.1;
+  color:var(--white);margin-bottom:16px;
+}
+h2 em{font-style:italic;font-weight:300;color:var(--white-60);}
+.sec-sub{
+  font-size:.92rem;font-weight:300;color:var(--white-60);
+  line-height:1.75;max-width:540px;
+}
+@media(max-width:768px){.sec{padding:64px 24px;}}
+
+/* ── SUMMARY ──────────────────────────────────────────────────── */
+#summary{background:var(--bg-2);border-top:1px solid var(--border);}
+.summary-layout{display:grid;grid-template-columns:5fr 4fr;gap:64px;align-items:start;}
+.summary-body p{
+  font-size:.95rem;font-weight:300;color:var(--white-60);
+  line-height:1.85;margin-bottom:20px;
+}
+.summary-body p strong{color:var(--white);font-weight:400;}
+.pillar-list{display:flex;flex-direction:column;gap:1px;}
+.pillar{
+  padding:24px 20px;background:var(--surface);
+  border-left:2px solid transparent;
+  transition:all .2s;
+}
+.pillar:hover{background:var(--surface-2);border-left-color:var(--cyan);}
+.pillar-no{
+  font-family:var(--mono);font-size:.58rem;color:var(--cyan);
+  letter-spacing:.1em;margin-bottom:8px;
+}
+.pillar-title{
+  font-family:var(--display);font-size:1.05rem;font-weight:600;
+  color:var(--white);margin-bottom:6px;letter-spacing:-.01em;
+}
+.pillar-desc{font-size:.82rem;font-weight:300;color:var(--white-35);line-height:1.65;}
+@media(max-width:900px){.summary-layout{grid-template-columns:1fr;gap:40px;}}
+
+/* ── EXPERIENCE ───────────────────────────────────────────────── */
+#experience{background:var(--bg);border-top:1px solid var(--border);}
+.exp-list{display:flex;flex-direction:column;gap:1px;}
+.exp-item{
+  display:grid;grid-template-columns:200px 1fr;
+  background:var(--surface);
+  transition:background .2s;overflow:hidden;
+}
+.exp-item:hover{background:var(--surface-2);}
+.exp-meta{
+  padding:32px 28px;border-right:1px solid var(--border);
+  display:flex;flex-direction:column;justify-content:flex-start;
+}
+.exp-co{
+  font-family:var(--display);font-size:1rem;font-weight:600;
+  color:var(--white);margin-bottom:6px;letter-spacing:-.01em;
+}
+.exp-period{
+  font-family:var(--mono);font-size:.58rem;color:var(--cyan);
+  letter-spacing:.06em;margin-bottom:8px;
+}
+.exp-loc{font-family:var(--mono);font-size:.58rem;color:var(--white-35);letter-spacing:.04em;}
+.exp-body{padding:32px 36px;}
+.exp-role{
+  font-family:var(--mono);font-size:.7rem;font-weight:500;
+  color:var(--white-60);letter-spacing:.06em;margin-bottom:18px;
+  padding-bottom:18px;border-bottom:1px solid var(--border);
+}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.exp-bullets li{
+  font-size:.875rem;font-weight:300;color:var(--white-60);
+  line-height:1.7;padding-left:20px;position:relative;
+}
+.exp-bullets li::before{
+  content:'—';position:absolute;left:0;
+  color:var(--cyan);font-family:var(--mono);font-size:.65rem;top:5px;
+}
+.exp-bullets li strong{color:var(--white);font-weight:400;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;}
+.exp-tag{
+  font-family:var(--mono);font-size:.58rem;font-weight:400;
+  padding:.2rem .55rem;background:var(--bg);
+  border:1px solid var(--border-2);color:var(--white-35);letter-spacing:.04em;
+}
+@media(max-width:700px){
+  .exp-item{grid-template-columns:1fr;}
+  .exp-meta{border-right:none;border-bottom:1px solid var(--border);padding:24px;}
+  .exp-body{padding:24px;}
+}
+
+/* ── TECH STACK ───────────────────────────────────────────────── */
+#techstack{background:var(--bg-2);border-top:1px solid var(--border);}
+.tech-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+}
+.tech-card{
+  background:var(--bg-2);padding:36px 32px;
+  position:relative;overflow:hidden;
+  transition:background .2s;
+}
+.tech-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:var(--cyan);transform:scaleX(0);transform-origin:left;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.tech-card:hover{background:var(--surface);}
+.tech-card:hover::after{transform:scaleX(1);}
+.tech-card-no{
+  font-family:var(--mono);font-size:.58rem;color:var(--white-35);
+  letter-spacing:.1em;margin-bottom:20px;
+}
+.tech-card-name{
+  font-family:var(--display);font-size:1.15rem;font-weight:600;
+  color:var(--white);letter-spacing:-.015em;margin-bottom:8px;
+}
+.tech-card-desc{
+  font-size:.78rem;font-weight:300;color:var(--white-35);
+  line-height:1.6;margin-bottom:20px;
+}
+.tech-pills{display:flex;flex-wrap:wrap;gap:5px;}
+.tech-pill{
+  font-family:var(--mono);font-size:.58rem;
+  padding:.18rem .5rem;
+  background:var(--bg);border:1px solid var(--border-2);
+  color:var(--white-35);letter-spacing:.04em;transition:all .15s;
+}
+.tech-pill:hover{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-glow);}
+@media(max-width:900px){.tech-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.tech-grid{grid-template-columns:1fr;}}
+
+/* ── IMPACT NUMBERS ───────────────────────────────────────────── */
+#transformation{background:var(--bg);border-top:1px solid var(--border);}
+.impact-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);border:1px solid var(--border);
+}
+.impact-cell{
+  background:var(--bg);padding:48px 36px;
+  position:relative;overflow:hidden;transition:background .2s;
+}
+.impact-cell:hover{background:var(--surface);}
+.impact-cell.featured{background:var(--surface);}
+.impact-num{
+  font-family:var(--display);
+  font-size:clamp(2.8rem,4vw,4rem);
+  font-weight:900;color:var(--cyan);
+  line-height:1;letter-spacing:-.04em;margin-bottom:12px;
+}
+.impact-label{
+  font-family:var(--display);font-size:.95rem;font-weight:600;
+  color:var(--white);margin-bottom:8px;letter-spacing:-.01em;
+}
+.impact-desc{font-size:.78rem;font-weight:300;color:var(--white-35);line-height:1.65;}
+@media(max-width:900px){.impact-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.impact-grid{grid-template-columns:1fr;}}
+
+/* ── PROJECTS ─────────────────────────────────────────────────── */
+#projects{background:var(--bg-2);border-top:1px solid var(--border);}
+.proj-list{display:flex;flex-direction:column;gap:1px;}
+.proj-item{
+  display:grid;grid-template-columns:3fr 2fr;
+  background:var(--surface);overflow:hidden;transition:background .2s;
+}
+.proj-item:hover{background:var(--surface-2);}
+.proj-left{padding:40px 40px;border-right:1px solid var(--border);}
+.proj-type{
+  font-family:var(--mono);font-size:.6rem;color:var(--cyan);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.proj-type::before{content:'';width:16px;height:1px;background:var(--cyan);}
+h3{
+  font-family:var(--display);font-size:1.5rem;font-weight:700;
+  color:var(--white);letter-spacing:-.02em;line-height:1.15;
+  margin-bottom:6px;
+}
+.proj-client{
+  font-family:var(--mono);font-size:.62rem;color:var(--white-35);
+  letter-spacing:.06em;margin-bottom:20px;
+}
+.proj-desc{
+  font-size:.875rem;font-weight:300;color:var(--white-60);
+  line-height:1.8;margin-bottom:24px;max-width:520px;
+}
+.proj-stack{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:28px;}
+.proj-stack span{
+  font-family:var(--mono);font-size:.58rem;
+  padding:.18rem .5rem;background:var(--bg);
+  border:1px solid var(--border-2);color:var(--white-35);
+}
+.proj-link-row{display:flex;align-items:center;gap:16px;}
+.proj-ext{
+  font-family:var(--mono);font-size:.62rem;font-weight:500;
+  color:var(--cyan);letter-spacing:.08em;text-transform:uppercase;
+  border-bottom:1px solid rgba(0,229,255,.4);padding-bottom:2px;
+  transition:border-color .15s;
+}
+.proj-ext:hover{border-color:var(--cyan);}
+.proj-media{
+  font-family:var(--mono);font-size:.6rem;color:var(--white-35);
+  letter-spacing:.06em;
+}
+.proj-right{
+  padding:40px 36px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.proj-metrics{display:flex;flex-direction:column;gap:2px;flex:1;}
+.proj-metric{
+  background:var(--bg);padding:20px 16px;
+  border-left:2px solid transparent;transition:border-color .2s;
+}
+.proj-metric:hover{border-left-color:var(--cyan);}
+.proj-metric-n{
+  font-family:var(--display);font-size:1.8rem;font-weight:700;
+  color:var(--cyan);line-height:1;margin-bottom:4px;
+}
+.proj-metric-l{font-family:var(--mono);font-size:.6rem;color:var(--white-35);letter-spacing:.05em;line-height:1.4;}
+@media(max-width:800px){
+  .proj-item{grid-template-columns:1fr;}
+  .proj-left{border-right:none;border-bottom:1px solid var(--border);padding:28px 24px;}
+  .proj-right{padding:28px 24px;}
+  .proj-metrics{flex-direction:row;flex-wrap:wrap;}
+  .proj-metric{flex:1;min-width:120px;}
+}
+
+/* media press strip */
+.press-strip{
+  display:flex;align-items:center;
+  border:1px solid var(--border);
+  background:var(--surface);
+  margin-top:1px;
+  padding:24px 40px;gap:32px;flex-wrap:wrap;
+}
+.press-label{font-family:var(--mono);font-size:.6rem;color:var(--white-35);letter-spacing:.1em;text-transform:uppercase;flex-shrink:0;}
+.press-links{display:flex;gap:16px;flex-wrap:wrap;}
+.press-link{
+  font-family:var(--mono);font-size:.62rem;color:var(--white-60);
+  letter-spacing:.06em;padding:.35rem 1rem;
+  border:1px solid var(--border-2);
+  transition:all .15s;
+}
+.press-link:hover{border-color:var(--cyan);color:var(--cyan);}
+
+/* ── SKILLS ───────────────────────────────────────────────────── */
+#skills{background:var(--bg);border-top:1px solid var(--border);}
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.skill-rows{display:flex;flex-direction:column;gap:20px;}
+.skill-row{}
+.skill-row-header{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:8px;
+}
+.skill-name{font-size:.82rem;font-weight:400;color:var(--white-60);}
+.skill-pct{font-family:var(--mono);font-size:.65rem;color:var(--cyan);letter-spacing:.04em;}
+.skill-track{height:1px;background:var(--border-2);position:relative;}
+.skill-fill{
+  position:absolute;top:0;left:0;height:100%;
+  background:var(--cyan);width:0%;
+  transition:width 1.4s cubic-bezier(.25,.46,.45,.94);
+}
+.skill-fill.on{width:var(--w);}
+
+.domain-cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+.domain-cell{background:var(--bg-2);padding:24px 20px;}
+.domain-name{
+  font-family:var(--display);font-size:.9rem;font-weight:600;
+  color:var(--white);margin-bottom:8px;letter-spacing:-.01em;
+}
+.domain-items{font-family:var(--mono);font-size:.6rem;color:var(--white-35);letter-spacing:.04em;line-height:2;}
+@media(max-width:800px){.skills-layout{grid-template-columns:1fr;gap:40px;}}
+
+/* ── CONTACT ──────────────────────────────────────────────────── */
+#contact{
+  background:var(--bg-2);border-top:1px solid var(--border);
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.contact-left{
+  padding:80px 64px;border-right:1px solid var(--border);
+}
+.contact-right{
+  padding:80px 64px;
+  display:flex;flex-direction:column;justify-content:center;gap:2px;
+}
+.contact-detail{
+  padding:20px 0;border-bottom:1px solid var(--border);
+  display:flex;flex-direction:column;gap:4px;
+}
+.contact-detail-label{font-family:var(--mono);font-size:.58rem;color:var(--white-35);letter-spacing:.1em;text-transform:uppercase;}
+.contact-detail-val{font-size:.9rem;font-weight:300;color:var(--white);}
+.contact-ctas{display:flex;flex-direction:column;gap:8px;margin-top:32px;}
+@media(max-width:800px){
+  #contact{grid-template-columns:1fr;}
+  .contact-left{padding:48px 24px;border-right:none;border-bottom:1px solid var(--border);}
+  .contact-right{padding:40px 24px;}
+}
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+footer{
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:24px 64px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;
+}
+footer p{font-family:var(--mono);font-size:.58rem;color:var(--white-35);letter-spacing:.06em;}
+footer a{color:var(--white-60);transition:color .15s;}
+footer a:hover{color:var(--cyan);}
+@media(max-width:768px){footer{padding:24px;flex-direction:column;align-items:flex-start;}}
+
+/* ── SCROLL REVEAL ────────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.d1{transition-delay:.08s;}
+.reveal.d2{transition-delay:.16s;}
+.reveal.d3{transition-delay:.24s;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ── SCROLLBAR ────────────────────────────────────────────────── */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border-2);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-id"><strong>AS</strong> / Programme Director</div>
+  <div class="nav-menu">
+    <a href="#summary">Profile</a>
+    <a href="#experience">Experience</a>
+    <a href="#techstack">Stack</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="https://www.linkedin.com/in/ankitsamriwal/" target="_blank" class="nav-connect">LinkedIn ↗</a>
+  <div class="nav-burger" onclick="document.getElementById('nav').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="hero-tag">Programme Director — D365 CE &amp; Agentic AI</div>
+    <h1>Ankit Samriwal<em>Digital Transformation Leader</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">
+      <strong>21+ years</strong> building enterprise-scale Microsoft solutions. <strong>8+ years</strong> specialising in D365 Customer Engagement, Contact Center, and Power Platform. The architect behind <strong>three UAE Government programmes</strong> featured in Gulf News — including the world's first AI-powered smart bus station.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-cta">View UAE Gov Projects</a>
+      <a href="https://www.linkedin.com/in/ankitsamriwal/" target="_blank" class="btn-ghost">LinkedIn Profile ↗</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-label">01 / Key Figures</div>
+    <div class="stat-row">
+      <div class="stat-cell accent">
+        <div class="stat-n">$40M+</div>
+        <div class="stat-l">Programme portfolio value delivered</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n">21+</div>
+        <div class="stat-l">Years enterprise technology leadership</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-cell">
+        <div class="stat-n">12+</div>
+        <div class="stat-l">Government &amp; enterprise engagements</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n">98%</div>
+        <div class="stat-l">Milestone adherence across portfolio</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-cell">
+        <div class="stat-n">20+</div>
+        <div class="stat-l">Consultants hired, mentored &amp; certified</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n">$100K+</div>
+        <div class="stat-l">Microsoft partnership funding unlocked</div>
+      </div>
+    </div>
+    <div class="certs-block">
+      <div class="certs-label">Certifications</div>
+      <div class="certs-list">
+        <span class="cert-pill">PMP</span>
+        <span class="cert-pill">Azure Architect Expert</span>
+        <span class="cert-pill">Azure DevOps Expert</span>
+        <span class="cert-pill">MB-910 D365</span>
+        <span class="cert-pill">SAFe Agilist 5.0</span>
+        <span class="cert-pill">CSM</span>
+        <span class="cert-pill">Six Sigma YB</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXECUTIVE SUMMARY -->
+<section id="summary" class="sec">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-eyebrow">Executive Profile <span class="sec-count">/ 01</span></div>
+      <h2>The bridge between<br/><em>C-suite strategy and live delivery</em></h2>
+    </div>
+    <div class="summary-layout">
+      <div class="summary-body reveal">
+        <p>With <strong>21+ years in enterprise technology</strong> and <strong>8+ years specialising in Microsoft Dynamics 365 Customer Engagement</strong>, I bridge strategy and delivery at programme scale. I've built and scaled a D365 CE &amp; Contact Center practice from zero — winning and executing a <strong>$40M+ programme portfolio</strong> across UAE Government, Financial Services, Insurance, Transport &amp; Logistics, and Media &amp; Culture.</p>
+        <p>My programmes have been recognised in <strong>Gulf News</strong> — the UAE's largest English-language newspaper — for transforming how government authorities serve millions of citizens. From Dubai Municipality's Services 360 control centre to the Roads &amp; Transport Authority's world-first AI-powered smart bus station, I architect solutions that make national headlines.</p>
+        <p>In recent years I've extended into <strong>Generative AI and Agentic AI</strong>, designing Copilot Studio autonomous agents for case triage, conversational IVR, and knowledge-driven FAQ resolution — deflecting 30% of Tier-1 requests and boosting agent productivity by 40%.</p>
+      </div>
+      <div class="pillar-list reveal d2">
+        <div class="pillar">
+          <div class="pillar-no">01 — Specialisation</div>
+          <div class="pillar-title">UAE Government Specialist</div>
+          <div class="pillar-desc">Delivered D365 programmes for Dubai Municipality, Dubai Legal Affairs Dept, and Roads &amp; Transport Authority — all featured in Gulf News.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-no">02 — Innovation</div>
+          <div class="pillar-title">Agentic AI Pioneer</div>
+          <div class="pillar-desc">Designed Copilot Studio multi-agent orchestration for autonomous case triage, IVR, and FAQ resolution at enterprise scale across UAE Government.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-no">03 — Leadership</div>
+          <div class="pillar-title">Practice Builder</div>
+          <div class="pillar-desc">Built Alpha Data's D365 CE practice from zero — 20+ consultants hired, certified and mentored; reusable accelerator library; 25% faster delivery.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-no">04 — Delivery</div>
+          <div class="pillar-title">Programme Director</div>
+          <div class="pillar-desc">$40M+ portfolio across 12+ engagements. 98% milestone adherence. Thought leadership at GITEX and Microsoft Middle East workshops.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="sec">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-eyebrow">Professional Experience <span class="sec-count">/ 02</span></div>
+      <h2>20+ years building<br/><em>what others only plan</em></h2>
+    </div>
+    <div class="exp-list">
+
+      <!-- Alpha Data -->
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-co">Alpha Data</div>
+          <div class="exp-period">Jun 2022 — Present</div>
+          <div class="exp-loc">Dubai, UAE · Full-time</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Delivery Leader — Program Management</div>
+          <ul class="exp-bullets">
+            <li>Own full pre-sales cycle end-to-end — discovery workshops, solution architecture, ROM estimation, RFP/proposal leadership, and Microsoft FastTrack alignment — across <strong>12+ Government, Insurance, Logistics, and Media &amp; Culture</strong> engagements spanning UAE and the wider GCC.</li>
+            <li>Directed <strong>award-winning D365 Contact Center transformation for a major Dubai Government authority</strong> — Omnichannel (voice, chat, SMS, email), conversational IVR, unified routing engine, real-time supervisor intelligence, and SLA automation. Delivered <strong>38% operational efficiency gain and 30% faster case resolution.</strong></li>
+            <li>Designed and deployed <strong>Copilot Studio Agentic AI agents with multi-agent orchestration</strong> — autonomous case triage, conversational IVR, lead qualification, and FAQ resolution. Achieved <strong>30% Tier-1 deflection and 40% agent productivity improvement</strong> across all contact centre workstreams.</li>
+            <li>Architected <strong>Power Pages citizen portals + Canvas/Model-Driven Apps + Power Automate flows</strong> extending D365 Customer Service across self-service channels — reducing <strong>inbound call volume by 35%</strong> and cutting manual processing time significantly.</li>
+            <li>Maintained deep, current hands-on immersion in D365 CE feature set — challenging architectural decisions at every stage, enforcing OOB-first principles, and aligning solution design with evolving Power Platform Wave releases and licensing constraints.</li>
+            <li>Oversaw complex multi-system integrations (D365 F&amp;O ERP, Azure APIM, Data Lake, UAE Pass identity, payment gateways, third-party platforms) across multi-vendor international delivery teams.</li>
+            <li>Built the D365 CE practice from zero — recruited and mentored <strong>20+ consultants</strong>, created reusable solution accelerator library reducing delivery by 25%, and unlocked <strong>$100K+ Microsoft funding.</strong> Thought leadership at GITEX and Microsoft ecosystem workshops.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">D365 Customer Service</span><span class="exp-tag">Contact Center</span>
+            <span class="exp-tag">Copilot Studio</span><span class="exp-tag">Power Pages</span>
+            <span class="exp-tag">Azure APIM</span><span class="exp-tag">Agentic AI</span><span class="exp-tag">Omnichannel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nagarro -->
+      <div class="exp-item reveal d1">
+        <div class="exp-meta">
+          <div class="exp-co">Nagarro</div>
+          <div class="exp-period">Apr 2021 — Jun 2022</div>
+          <div class="exp-loc">GCC Region · Hybrid</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Associate Director, Programme Management</div>
+          <ul class="exp-bullets">
+            <li>Led <strong>D365 Customer Service Omnichannel</strong> (live chat, case management, SLA automation) + D365 Sales with Copilot for GCC insurance and manufacturing clients — <strong>35% resolution efficiency gain and 40% planner productivity improvement.</strong></li>
+            <li>Delivered <strong>Power Pages partner portals, Model-Driven Apps, and Canvas Apps</strong>; hired, coached, and upskilled <strong>15+ D365 CE consultants across MEA</strong> — 30% faster procurement cycles, 25% faster onboarding.</li>
+            <li>Directed <strong>AX 2012 → D365 CE &amp; F&amp;O migration</strong> for GCC manufacturing enterprise — cut monthly close cycles from 10 to 5 days, <strong>35% financial consolidation efficiency improvement.</strong></li>
+          </ul>
+          <div class="exp-tags"><span class="exp-tag">D365 Customer Service</span><span class="exp-tag">Omnichannel</span><span class="exp-tag">D365 F&amp;O</span><span class="exp-tag">Power Pages</span><span class="exp-tag">MEA Delivery</span></div>
+        </div>
+      </div>
+
+      <!-- Healthigo -->
+      <div class="exp-item reveal d1">
+        <div class="exp-meta">
+          <div class="exp-co">Healthigo</div>
+          <div class="exp-period">Sep 2020 — Jan 2021</div>
+          <div class="exp-loc">Dubai, UAE</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Product Manager</div>
+          <ul class="exp-bullets">
+            <li>Configured <strong>D365 Customer Service</strong> (patient case management, referral tracking, queue routing) with Power BI Embedded dashboards for a large hospital group — <strong>40% faster executive decision-making, 50% reduction in manual data entry.</strong> Defined Copilot Studio product roadmap for AI-driven patient triage and appointment scheduling agents.</li>
+          </ul>
+          <div class="exp-tags"><span class="exp-tag">D365 Customer Service</span><span class="exp-tag">Power BI Embedded</span><span class="exp-tag">Copilot Studio</span><span class="exp-tag">Healthcare</span></div>
+        </div>
+      </div>
+
+      <!-- Prologic First -->
+      <div class="exp-item reveal d2">
+        <div class="exp-meta">
+          <div class="exp-co">Prologic First</div>
+          <div class="exp-period">Nov 2019 — Sep 2020</div>
+          <div class="exp-loc">Dubai, UAE · Full-time</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Project Manager</div>
+          <ul class="exp-bullets">
+            <li>Led <strong>CRM service-request automation and pipeline analytics</strong> — streamlined case routing, escalation workflows, and status notifications; implemented lead-to-opportunity tracking with pipeline analytics for B2B hospitality clients. Secured <strong>$225K contract</strong> through product strategy leadership.</li>
+          </ul>
+          <div class="exp-tags"><span class="exp-tag">CRM</span><span class="exp-tag">Service Automation</span><span class="exp-tag">Pipeline Analytics</span><span class="exp-tag">Hospitality</span></div>
+        </div>
+      </div>
+
+      <!-- UnitedHealth Group -->
+      <div class="exp-item reveal d2">
+        <div class="exp-meta">
+          <div class="exp-co">UnitedHealth Group</div>
+          <div class="exp-period">Feb 2009 — Jul 2019</div>
+          <div class="exp-loc">Gurgaon, India · 10+ yrs</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Sr. Test Engineer → Sr. Product Owner (4 progressive roles)</div>
+          <ul class="exp-bullets">
+            <li>Progressed through four roles over a decade (Sr. Test Engineer → Project Lead → Project Manager → Product Owner) in one of the world's largest healthcare enterprises, building deep expertise in enterprise systems, Agile delivery, and stakeholder management.</li>
+            <li>Led <strong>Agile transformation for a 50+ person business unit</strong> — halved feature build time from 30 to 14 days; raised provider engagement 33%; cut claim rejection 13% via business-rule automation. <strong>Six Sigma Yellow Belt; SME Level 1 in Healthcare Claims.</strong></li>
+          </ul>
+          <div class="exp-tags"><span class="exp-tag">Agile Transformation</span><span class="exp-tag">Healthcare IT</span><span class="exp-tag">Product Ownership</span><span class="exp-tag">Six Sigma YB</span></div>
+        </div>
+      </div>
+
+      <!-- Aon Hewitt -->
+      <div class="exp-item reveal d3">
+        <div class="exp-meta">
+          <div class="exp-co">Aon Hewitt</div>
+          <div class="exp-period">Jul 2005 — Feb 2009</div>
+          <div class="exp-loc">India · 3 yrs 8 mos</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Setup Configuration Analyst → Functional System Analyst</div>
+          <ul class="exp-bullets">
+            <li>Fortune 500 enterprise benefits configuration (<strong>The Home Depot — 400K employees</strong>): production deployment, regression testing, third-party data mgmt (MetLife, Aetna), UAT cycles, and junior analyst coaching across H&amp;W domain.</li>
+          </ul>
+          <div class="exp-tags"><span class="exp-tag">H&amp;W Benefits</span><span class="exp-tag">Enterprise Config</span><span class="exp-tag">UAT</span><span class="exp-tag">Fortune 500</span><span class="exp-tag">Global Delivery</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="techstack" class="sec">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-eyebrow">Technology Stack <span class="sec-count">/ 03</span></div>
+      <h2>Microsoft-first.<br/><em>AI-augmented. Cloud-native.</em></h2>
+      <p class="sec-sub">Hands-on depth across the full D365 + Power Platform + Azure stack — always current with Wave releases, licensing nuances, and OOB-first architecture principles.</p>
+    </div>
+    <div class="tech-grid reveal">
+      <div class="tech-card">
+        <div class="tech-card-no">01</div>
+        <div class="tech-card-name">D365 CRM / CE</div>
+        <div class="tech-card-desc">Customer Engagement suite — the core of every enterprise transformation.</div>
+        <div class="tech-pills">
+          <span class="tech-pill">Customer Service</span><span class="tech-pill">Contact Center</span>
+          <span class="tech-pill">Field Service</span><span class="tech-pill">Sales + Copilot</span>
+          <span class="tech-pill">Omnichannel</span><span class="tech-pill">Unified Routing</span>
+          <span class="tech-pill">IVR</span><span class="tech-pill">Supervisor Intel</span>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-no">02</div>
+        <div class="tech-card-name">Power Platform</div>
+        <div class="tech-card-desc">End-to-end low-code automation and citizen portals extending D365.</div>
+        <div class="tech-pills">
+          <span class="tech-pill">Power Pages</span><span class="tech-pill">Canvas Apps</span>
+          <span class="tech-pill">Model-Driven Apps</span><span class="tech-pill">Power Automate</span>
+          <span class="tech-pill">Power BI Embedded</span><span class="tech-pill">Dataverse</span>
+          <span class="tech-pill">Copilot Studio</span>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-no">03</div>
+        <div class="tech-card-name">Agentic AI</div>
+        <div class="tech-card-desc">Autonomous AI agents deployed at government scale for real enterprise outcomes.</div>
+        <div class="tech-pills">
+          <span class="tech-pill">Copilot Studio</span><span class="tech-pill">Multi-agent Orch.</span>
+          <span class="tech-pill">Case Triage Agents</span><span class="tech-pill">Conversational IVR</span>
+          <span class="tech-pill">FAQ Resolution</span><span class="tech-pill">GenAI APIs</span>
+          <span class="tech-pill">Responsible AI</span>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-no">04</div>
+        <div class="tech-card-name">D365 ERP (F&amp;O)</div>
+        <div class="tech-card-desc">Full-lifecycle finance &amp; operations transformations including AX→D365 migrations.</div>
+        <div class="tech-pills">
+          <span class="tech-pill">Finance</span><span class="tech-pill">Supply Chain</span>
+          <span class="tech-pill">Project Ops</span><span class="tech-pill">AX2012 Migration</span>
+          <span class="tech-pill">FastTrack</span><span class="tech-pill">Bridge to Cloud</span>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-no">05</div>
+        <div class="tech-card-name">Azure Integration</div>
+        <div class="tech-card-desc">Cloud-native integration fabric connecting D365, legacy systems, and APIs.</div>
+        <div class="tech-pills">
+          <span class="tech-pill">Azure APIM</span><span class="tech-pill">Logic Apps</span>
+          <span class="tech-pill">Azure Data Lake</span><span class="tech-pill">Azure Functions</span>
+          <span class="tech-pill">Managed Identity</span><span class="tech-pill">Graph API</span>
+          <span class="tech-pill">UAE Pass</span>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-no">06</div>
+        <div class="tech-card-name">Delivery &amp; Governance</div>
+        <div class="tech-card-desc">SAFe Agile and hybrid governance with enterprise-grade delivery rigour.</div>
+        <div class="tech-pills">
+          <span class="tech-pill">Azure DevOps</span><span class="tech-pill">SAFe Agile 5.0</span>
+          <span class="tech-pill">Waterfall Hybrid</span><span class="tech-pill">SharePoint Online</span>
+          <span class="tech-pill">UiPath RPA</span><span class="tech-pill">GDPR / UAE DP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="transformation" class="sec">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-eyebrow">Measurable Impact <span class="sec-count">/ 04</span></div>
+      <h2>Numbers from<br/><em>live programmes — not projections</em></h2>
+    </div>
+    <div class="impact-grid reveal">
+      <div class="impact-cell featured">
+        <div class="impact-num">38%</div>
+        <div class="impact-label">Operational Efficiency Gain</div>
+        <div class="impact-desc">Dubai Government Contact Center — D365 Omnichannel, Copilot AI Agents, unified routing. Award-winning.</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">30%</div>
+        <div class="impact-label">Tier-1 Request Deflection</div>
+        <div class="impact-desc">Copilot Studio Agentic AI — autonomous case triage, conversational IVR replacing human first-line queries.</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">35%</div>
+        <div class="impact-label">Inbound Call Reduction</div>
+        <div class="impact-desc">Power Pages citizen portals + Canvas Apps extending D365 Customer Service to self-service at government scale.</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">40%</div>
+        <div class="impact-label">Agent Productivity Gain</div>
+        <div class="impact-desc">Multi-agent AI orchestration — faster resolution, smarter routing, real-time supervisor intelligence.</div>
+      </div>
+      <div class="impact-cell featured">
+        <div class="impact-num">$40M+</div>
+        <div class="impact-label">Portfolio Value Delivered</div>
+        <div class="impact-desc">12+ engagements across UAE Government, Insurance, Logistics, and Media with 98% milestone adherence.</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">$100K+</div>
+        <div class="impact-label">Microsoft Funding Secured</div>
+        <div class="impact-desc">Bridge to Cloud 2.0 &amp; Copilot adoption — secured directly through Microsoft Middle East partnership.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="sec">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-eyebrow">UAE Government Programmes <span class="sec-count">/ 05</span></div>
+      <h2>Three programmes.<br/><em>Three Gulf News headlines.</em></h2>
+      <p class="sec-sub">Award-winning D365 transformations for Dubai's most prominent government authorities — each featured in the UAE's largest English-language newspaper.</p>
+    </div>
+
+    <div class="proj-list">
+
+      <!-- Dubai Municipality -->
+      <div class="proj-item reveal">
+        <div class="proj-left">
+          <div class="proj-type">D365 Customer Service / Contact Center</div>
+          <h3>Services 360 Control Centre</h3>
+          <div class="proj-client">Client — Dubai Municipality</div>
+          <p class="proj-desc">Architected Dubai Municipality's flagship Services 360 Control Centre — a D365 Customer Service platform enabling real-time tracking, intelligent routing, and Omnichannel engagement across all citizen service requests. Supervisor intelligence dashboards provided live SLA visibility across departments serving millions of Dubai residents. Citizen-facing Power Pages portal significantly reduced inbound call volume and paper-based workflows.</p>
+          <div class="proj-stack">
+            <span>D365 Customer Service</span><span>Omnichannel</span><span>Power Pages</span>
+            <span>Power BI</span><span>Azure APIM</span><span>Copilot AI Agents</span><span>Dataverse</span>
+          </div>
+          <div class="proj-link-row">
+            <a href="https://gulfnews.com/uae/uae-customers-enjoy-faster-service-delivery-through-dubai-municipalitys-new-services-360-control-centre-1.98171863" target="_blank" class="proj-ext">Gulf News Coverage ↗</a>
+            <span class="proj-media">Published · Gulf News</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="proj-metrics">
+            <div class="proj-metric">
+              <div class="proj-metric-n">38%</div>
+              <div class="proj-metric-l">Operational efficiency gain</div>
+            </div>
+            <div class="proj-metric">
+              <div class="proj-metric-n">360°</div>
+              <div class="proj-metric-l">Real-time service visibility</div>
+            </div>
+            <div class="proj-metric">
+              <div class="proj-metric-n">35%</div>
+              <div class="proj-metric-l">Inbound call reduction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dubai Legal Affairs -->
+      <div class="proj-item reveal d1">
+        <div class="proj-left">
+          <div class="proj-type">D365 CRM / Power Platform / ERP</div>
+          <h3>Legal Profession Digital Platform</h3>
+          <div class="proj-client">Client — Dubai Legal Affairs Department</div>
+          <p class="proj-desc">Delivered a comprehensive digital transformation of Dubai's legal profession — D365 CRM + Power Pages portal enabling end-to-end digital registration, licensing, complaint management, and compliance workflows for legal firms and practitioners across the Emirate. Implemented UAE National discount logic, fine structures, and integrated UAE Pass digital identity. Replaced paper-intensive manual processes with a fully automated digital government platform.</p>
+          <div class="proj-stack">
+            <span>D365 CRM</span><span>Power Pages</span><span>Power Automate</span>
+            <span>UAE Pass</span><span>.NET / Angular</span><span>Dataverse</span><span>Azure APIM</span>
+          </div>
+          <div class="proj-link-row">
+            <a href="https://gulfnews.com/uae/dubai-launches-new-digital-system-to-streamline-legal-profession-services-1.500367643" target="_blank" class="proj-ext">Gulf News Coverage ↗</a>
+            <span class="proj-media">Published · Gulf News</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="proj-metrics">
+            <div class="proj-metric">
+              <div class="proj-metric-n">100%</div>
+              <div class="proj-metric-l">Digital firm registration</div>
+            </div>
+            <div class="proj-metric">
+              <div class="proj-metric-n">Zero</div>
+              <div class="proj-metric-l">Paper-based workflows remaining</div>
+            </div>
+            <div class="proj-metric">
+              <div class="proj-metric-n">UAE</div>
+              <div class="proj-metric-l">Pass identity integration</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RTA -->
+      <div class="proj-item reveal d2">
+        <div class="proj-left">
+          <div class="proj-type">D365 Field Service / Azure AI / IoT</div>
+          <h3>World's First AI-Powered Smart Bus Station</h3>
+          <div class="proj-client">Client — Roads &amp; Transport Authority (RTA), Dubai</div>
+          <p class="proj-desc">Spearheaded the technology architecture behind the world's first AI-powered smart bus station for Dubai's Roads &amp; Transport Authority — integrating D365 Field Service with IoT sensors, real-time asset monitoring, predictive maintenance workflows, and AI-driven operational intelligence. The programme automated maintenance scheduling, reduced asset downtime, and set a global benchmark for smart mobility infrastructure. Featured as a world-first by Gulf News.</p>
+          <div class="proj-stack">
+            <span>D365 Field Service</span><span>IoT Integration</span><span>Azure AI</span>
+            <span>Predictive Maintenance</span><span>Power BI</span><span>Azure Data Lake</span><span>Azure IoT Hub</span>
+          </div>
+          <div class="proj-link-row">
+            <a href="https://gulfnews.com/uae/transport/dubai-launches-worlds-first-ai-powered-smart-bus-station-1.500535433" target="_blank" class="proj-ext">Gulf News Coverage ↗</a>
+            <span class="proj-media">Published · Gulf News</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="proj-metrics">
+            <div class="proj-metric">
+              <div class="proj-metric-n">#1</div>
+              <div class="proj-metric-l">World-first AI smart station</div>
+            </div>
+            <div class="proj-metric">
+              <div class="proj-metric-n">IoT</div>
+              <div class="proj-metric-l">Real-time asset intelligence</div>
+            </div>
+            <div class="proj-metric">
+              <div class="proj-metric-n">AI</div>
+              <div class="proj-metric-l">Predictive maintenance engine</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Press strip -->
+    <div class="press-strip reveal">
+      <span class="press-label">Gulf News Coverage</span>
+      <div class="press-links">
+        <a href="https://gulfnews.com/uae/uae-customers-enjoy-faster-service-delivery-through-dubai-municipalitys-new-services-360-control-centre-1.98171863" target="_blank" class="press-link">Dubai Municipality — Services 360</a>
+        <a href="https://gulfnews.com/uae/dubai-launches-new-digital-system-to-streamline-legal-profession-services-1.500367643" target="_blank" class="press-link">Dubai Legal Affairs — Digital Platform</a>
+        <a href="https://gulfnews.com/uae/transport/dubai-launches-worlds-first-ai-powered-smart-bus-station-1.500535433" target="_blank" class="press-link">RTA — World's First AI Smart Bus Station</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="sec">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-eyebrow">Skills &amp; Domains <span class="sec-count">/ 06</span></div>
+      <h2>Deep expertise.<br/><em>Broad domain coverage.</em></h2>
+    </div>
+    <div class="skills-layout">
+      <div class="skill-rows reveal">
+        <div class="skill-row">
+          <div class="skill-row-header"><span class="skill-name">D365 Customer Engagement (CE)</span><span class="skill-pct">98%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:98%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-header"><span class="skill-name">Power Platform — Pages, Apps, Automate, BI</span><span class="skill-pct">95%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:95%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-header"><span class="skill-name">Copilot Studio &amp; Agentic AI</span><span class="skill-pct">92%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:92%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-header"><span class="skill-name">Azure Integration &amp; Architecture</span><span class="skill-pct">90%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-header"><span class="skill-name">D365 ERP — Finance &amp; Operations</span><span class="skill-pct">85%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:85%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-header"><span class="skill-name">Programme Governance &amp; Pre-Sales</span><span class="skill-pct">97%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:97%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-header"><span class="skill-name">Change Management &amp; Executive Advisory</span><span class="skill-pct">93%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:93%"></div></div>
+        </div>
+      </div>
+      <div class="domain-cols reveal d2">
+        <div class="domain-cell">
+          <div class="domain-name">Government &amp; Public Sector</div>
+          <div class="domain-items">Dubai Municipality<br/>Dubai Legal Affairs Dept<br/>Roads &amp; Transport Authority<br/>KHDA<br/>UAE Federal Authorities</div>
+        </div>
+        <div class="domain-cell">
+          <div class="domain-name">Financial Services</div>
+          <div class="domain-items">Insurance<br/>Banking<br/>GCC Financial Institutions<br/>Compliance &amp; Regulatory</div>
+        </div>
+        <div class="domain-cell">
+          <div class="domain-name">Transport &amp; Logistics</div>
+          <div class="domain-items">Smart Mobility<br/>Fleet Management<br/>Supply Chain<br/>Asset Intelligence</div>
+        </div>
+        <div class="domain-cell">
+          <div class="domain-name">Healthcare &amp; Media</div>
+          <div class="domain-items">Hospital Groups<br/>Broadcast &amp; Publishing<br/>Heritage &amp; Culture<br/>UnitedHealth Group</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <div class="sec-eyebrow">Contact <span class="sec-count">/ 07</span></div>
+    <h2 style="margin-top:20px;">Ready to lead your<br/><em>next transformation?</em></h2>
+    <p class="sec-sub" style="margin-top:16px;">Based in Dubai. Open to Europe, remote, and hybrid engagements. Available for Programme Director, Digital Transformation, and D365 CE leadership roles.</p>
+    <div class="contact-ctas">
+      <a href="https://www.linkedin.com/in/ankitsamriwal/" target="_blank" class="btn-cta">Connect on LinkedIn ↗</a>
+      <a href="mailto:ankitsamriwal@gmail.com" class="btn-ghost">ankitsamriwal@gmail.com</a>
+    </div>
+  </div>
+  <div class="contact-right reveal d2">
+    <div class="contact-detail">
+      <span class="contact-detail-label">Location</span>
+      <span class="contact-detail-val">Dubai, UAE — Open to Europe / Remote / Hybrid</span>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-label">LinkedIn</span>
+      <span class="contact-detail-val"><a href="https://www.linkedin.com/in/ankitsamriwal/" target="_blank" style="color:var(--cyan);">linkedin.com/in/ankitsamriwal</a></span>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-label">Email</span>
+      <span class="contact-detail-val"><a href="mailto:ankitsamriwal@gmail.com" style="color:var(--cyan);">ankitsamriwal@gmail.com</a></span>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-label">Phone</span>
+      <span class="contact-detail-val">+971-585 426 406</span>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-label">Availability</span>
+      <span class="contact-detail-val">Immediate — Programme Director / D365 CE Lead Roles</span>
+    </div>
+    <div class="contact-detail" style="border-bottom:none;">
+      <span class="contact-detail-label">Thought Leadership</span>
+      <span class="contact-detail-val">GITEX · Microsoft Middle East Ecosystem Workshops</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Ankit Samriwal — Programme Director, D365 CE &amp; Digital Transformation Leader</p>
+  <p><a href="https://www.linkedin.com/in/ankitsamriwal/" target="_blank">linkedin.com/in/ankitsamriwal</a> · Dubai, UAE</p>
+</footer>
+
+<script>
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // skill bars
+      e.target.querySelectorAll('.skill-fill').forEach(f => f.classList.add('on'));
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Skill bars in own section
+const skillIo = new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting)
+    document.querySelectorAll('.skill-fill').forEach(f=>f.classList.add('on'));
+},{threshold:0.2});
+const skillSec = document.getElementById('skills');
+if(skillSec) skillIo.observe(skillSec);
+
+// Mobile nav close
+document.querySelectorAll('.nav-menu a').forEach(a=>
+  a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
+
+// Nav border on scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.borderBottomColor =
+    window.scrollY > 10 ? 'var(--border)' : 'transparent';
+},{ passive:true });
+</script>
+</body>
+</html>
