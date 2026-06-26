@@ -21,6 +21,7 @@ jobs:
           import re
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
+          target = 'https://ankit-samriwal.vercel.app/'
 
           s = s.replace('Programme Director, D365 CE & AI', 'Programme Director, AI Powered Applications & AI')
           s = s.replace('Programme Director, D365 CE &amp; Digital Transformation Leader', 'Programme Director, AI Powered Applications &amp; Digital Transformation Leader')
@@ -39,14 +40,15 @@ jobs:
           s = s.replace('D365 CE', 'AI-powered applications')
           s = s.replace('a AI-powered applications', 'an AI-powered applications')
 
-          # Make AI Chronicles always navigate to the real static blog page.
-          s = re.sub(r'<a href="[^"]*">AI Chronicles</a>', '<a href="/blog.html">AI Chronicles</a>', s)
-          if '<a href="/blog.html">AI Chronicles</a>' not in s:
-              s = s.replace('<a href="#projects">Projects</a>', '<a href="#projects">Projects</a>\n    <a href="/blog.html">AI Chronicles</a>')
+          # Point AI Chronicles to the dedicated site.
+          s = re.sub(r'<a href="[^"]*"(?: target="[^"]*")?(?: rel="[^"]*")?>AI Chronicles</a>', f'<a href="{target}" target="_blank" rel="noopener noreferrer">AI Chronicles</a>', s)
+          if 'target="_blank" rel="noopener noreferrer">AI Chronicles</a>' not in s:
+              s = s.replace('<a href="#projects">Projects</a>', f'<a href="#projects">Projects</a>\n    <a href="{target}" target="_blank" rel="noopener noreferrer">AI Chronicles</a>')
 
-          # Add hero CTA if missing.
+          # Add/update hero CTA.
+          s = re.sub(r'<a href="[^"]*"(?: target="[^"]*")?(?: rel="[^"]*")? class="btn-ghost">Read AI Chronicles →</a>', f'<a href="{target}" target="_blank" rel="noopener noreferrer" class="btn-ghost">Read AI Chronicles →</a>', s)
           if 'Read AI Chronicles' not in s:
-              s = s.replace('<a href="https://www.linkedin.com/in/ankitsamriwal/" target="_blank" class="btn-ghost">LinkedIn Profile ↗</a>', '<a href="/blog.html" class="btn-ghost">Read AI Chronicles →</a>\n      <a href="https://www.linkedin.com/in/ankitsamriwal/" target="_blank" class="btn-ghost">LinkedIn Profile ↗</a>')
+              s = s.replace('<a href="https://www.linkedin.com/in/ankitsamriwal/" target="_blank" class="btn-ghost">LinkedIn Profile ↗</a>', f'<a href="{target}" target="_blank" rel="noopener noreferrer" class="btn-ghost">Read AI Chronicles →</a>\n      <a href="https://www.linkedin.com/in/ankitsamriwal/" target="_blank" class="btn-ghost">LinkedIn Profile ↗</a>')
 
           # Remove availability block and wording.
           s = re.sub(r'\s*<div class="contact-detail">\s*<span class="contact-detail-label">\s*Availability\s*</span>\s*<span class="contact-detail-val">.*?</span>\s*</div>', '', s, flags=re.I|re.S)
@@ -76,6 +78,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No profile changes needed"
           else
-            git commit -m "Fix AI Chronicles nav and update profile skills"
+            git commit -m "Point AI Chronicles links to dedicated site"
             git push
           fi
