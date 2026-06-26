@@ -1,0 +1,57 @@
+name: Patch profile page
+
+on:
+  push:
+    paths:
+      - '.github/workflows/profile-patch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply requested profile updates
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          s = s.replace('Programme Director, D365 CE & AI', 'Programme Director, AI Powered Applications & AI')
+          s = s.replace('D365 CRM / CE', 'AI Powered Applications')
+          s = s.replace('D365 CRM / Power Platform / ERP', 'AI Powered Applications / Power Platform / ERP')
+          s = s.replace('Maintained deep, current hands-on immersion in D365 CE feature set', 'Maintained deep, current hands-on immersion in AI-powered applications and enterprise CRM capabilities')
+          s = s.replace('Built the D365 CE practice from zero', 'Built the AI-powered applications practice from zero')
+          s = s.replace('D365 CE consultants', 'AI-powered applications consultants')
+          s = s.replace('D365 CE &amp; F&amp;O migration', 'AI-powered applications &amp; F&amp;O migration')
+
+          if '<a href="blog.html">AI Chronicles</a>' not in s:
+              s = s.replace('<a href="#projects">Projects</a>', '<a href="#projects">Projects</a>\n    <a href="blog.html">AI Chronicles</a>')
+
+          s = re.sub(r'\s*<div class="contact-detail">\s*<div class="contact-detail-label">\s*Availability\s*</div>\s*<div class="contact-detail-val">\s*Immediate\s*</div>\s*</div>', '', s, flags=re.I)
+          s = re.sub(r'\s*<div class="contact-detail">\s*<div class="contact-detail-label">\s*Availability\s*</div>\s*<div class="contact-detail-val">\s*Available Immediate\s*</div>\s*</div>', '', s, flags=re.I)
+          s = re.sub(r'Availability\s*[:\-]?\s*Immediate', '', s, flags=re.I)
+          s = re.sub(r'Available\s*Immediate', '', s, flags=re.I)
+
+          s = s.replace('<span class="tech-pill">Responsible AI</span>', '<span class="tech-pill">Responsible AI</span><span class="tech-pill">ML</span><span class="tech-pill">MLOps</span>')
+          s = s.replace('<span class="tech-pill">Azure Data Lake</span><span class="tech-pill">Azure Functions</span>', '<span class="tech-pill">Azure Data Lake</span><span class="tech-pill">Azure Functions</span><span class="tech-pill">SQL</span><span class="tech-pill">Spark</span>')
+          s = s.replace('<span class="exp-tag">Azure APIM</span><span class="exp-tag">Agentic AI</span><span class="exp-tag">Omnichannel</span>', '<span class="exp-tag">Azure APIM</span><span class="exp-tag">Agentic AI</span><span class="exp-tag">ML</span><span class="exp-tag">MLOps</span><span class="exp-tag">SQL</span><span class="exp-tag">Spark</span><span class="exp-tag">Omnichannel</span>')
+
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit patched index
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No profile changes needed"
+          else
+            git commit -m "Update profile copy, blog nav and skills"
+            git push
+          fi
